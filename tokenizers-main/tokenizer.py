@@ -7,16 +7,15 @@ import torch
 from transformers import pipeline, AutoTokenizer
 
 comp = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-print(comp)
-
 
 pipe = pipeline(
     "text-generation",
-    model = "FacebookAI/roberta-large-mnli",
+    model = "gpt2",
     device = comp
 )
+print(pipe)
 
-text = input("")
+text = input("Input your prompt after the colon:")
 outputs = pipe(text, max_new_tokens = 256)
 response = outputs[0]["generated_text"]
 print(response)
